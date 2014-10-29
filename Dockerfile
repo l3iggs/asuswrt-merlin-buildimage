@@ -34,7 +34,7 @@ ENV PATH $PATH:/root/asuswrt-merlin/tools/brcm/hndtools-mipsel-uclibc/bin/:/root
 
 # add tcp HTCP module
 RUN echo "CONFIG_TCP_CONG_ADVANCED=y" >> /root/asuswrt-merlin/release/src-rt-6.x.4708/linux/linux-2.6/config_base.6a
-RUN echo "CONFIG_TCP_CONG_HTCP=m" >> /root/asuswrt-merlin/release/src-rt-6.x.4708/linux/linux-2.6/config_base.6a
+RUN echo "CONFIG_TCP_CONG_VEGAS=m" >> /root/asuswrt-merlin/release/src-rt-6.x.4708/linux/linux-2.6/config_base.6a
 
 # build firmwares
 RUN cd /root/asuswrt-merlin/release/src-rt-6.x.4708/ && make rt-ac87u
@@ -43,7 +43,7 @@ RUN cd /root/asuswrt-merlin/release/src-rt-6.x.4708/ && make rt-ac87u
 RUN cd /root && git clone https://github.com/esnet/iperf.git
 RUN cd /root/iperf && CFLAGS=-static LD_LIBRARY_PATH=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib ./bootstrap.sh
 RUN cd /root/iperf && CFLAGS=-static LD_LIBRARY_PATH=//root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib ./configure --with-sysroot=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 --host=arm-brcm-linux-uclibcgnueabi
-RUN cd /root/iperf && CFLAGS=-static LD_LIBRARY_PATH=//root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib make
+#RUN cd /root/iperf && CFLAGS=-static LD_LIBRARY_PATH=//root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib make
 
 # display ccache summary
 RUN ccache -s
