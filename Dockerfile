@@ -38,5 +38,11 @@ RUN echo "CONFIG_TCP_CONG_HTCP=m" >> /root/asuswrt-merlin/release/src-rt-6.x.470
 # build firmwares
 RUN cd /root/asuswrt-merlin/release/src-rt-6.x.4708/ && make rt-ac87u
 
+# fetch iperf3
+RUN cd /root && git clone https://github.com/esnet/iperf.git
+RUN cd /root/iperf && CFLAGS=-static LD_LIBRARY_PATH=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib ./bootstrap.sh
+RUN cd /root/iperf && CFLAGS=-static LD_LIBRARY_PATH=//root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib ./configure --with-sysroot=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 --host=arm-brcm-linux-uclibcgnueabi
+RUN cd /root/iperf && CFLAGS=-static LD_LIBRARY_PATH=//root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib make
+
 # display ccache summary
 RUN ccache -s
