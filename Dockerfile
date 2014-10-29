@@ -13,7 +13,7 @@ RUN git config --global user.email "buildbot@none.com"
 RUN git config --global user.name "Build Bot"
 
 # install dependancies
-RUN apt-get install -y autoconf automake bash bison bzip2 diffutils file flex m4 g++ gawk groff-base libncurses-dev libtool libslang2 make patch perl pkg-config shtool subversion tar texinfo zlib1g zlib1g-dev git-core gettext libexpat1-dev libssl-dev cvs gperf unzip python libxml-parser-perl gcc-multilib gconf-editor libxml2-dev g++-4.4 g++-multilib gitk libncurses5 mtd-utils libncurses5-dev libstdc++6-4.4-dev libvorbis-dev g++-4.4-multilib git autopoint autogen sed build-essential intltool libelf1:i386 libglib2.0-dev lib32z1-dev lib32stdc++6
+RUN apt-get install -y autoconf automake bash bison bzip2 diffutils file flex m4 g++ gawk groff-base libncurses-dev libtool libslang2 make patch perl pkg-config shtool tar texinfo zlib1g zlib1g-dev gettext libexpat1-dev libssl-dev cvs gperf unzip python libxml-parser-perl gcc-multilib libxml2-dev g++-4.4 g++-multilib libncurses5 mtd-utils libncurses5-dev libstdc++6-4.4-dev libvorbis-dev g++-4.4-multilib autopoint autogen sed build-essential intltool libelf1:i386 libglib2.0-dev lib32z1-dev lib32stdc++6
 
 # clone source
 RUN cd /root && git clone https://github.com/RMerl/asuswrt-merlin.git
