@@ -8,7 +8,7 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates multiverse >> /et
 RUN apt-get update
 RUN apt-get install -y apt-utils
 RUN apt-get -y dist-upgrade
-RUN apt-get install -y git ccache
+RUN apt-get install -y git ccache vim
 RUN git config --global user.email "buildbot@none.com"
 RUN git config --global user.name "Build Bot"
 
@@ -39,11 +39,16 @@ RUN echo "CONFIG_TCP_CONG_VEGAS=m" >> /root/asuswrt-merlin/release/src-rt-6.x.47
 # build firmwares
 RUN cd /root/asuswrt-merlin/release/src-rt-6.x.4708/ && make rt-ac87u
 
-# fetch iperf3
+# iperf3
 RUN cd /root && git clone https://github.com/esnet/iperf.git
 RUN cd /root/iperf && CFLAGS=-static LD_LIBRARY_PATH=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib ./bootstrap.sh
 RUN cd /root/iperf && CFLAGS=-static LD_LIBRARY_PATH=//root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib ./configure --with-sysroot=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 --host=arm-brcm-linux-uclibcgnueabi
+#this spits out an exe but then fails later
 #RUN cd /root/iperf && CFLAGS=-static LD_LIBRARY_PATH=//root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib make
+
+# udpxy
+RUN cd /root && git clone https://github.com/pcherenkov/udpxy.git
+RUN cd /root/udpxy && LD_LIBRARY_PATH=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib PATH=$PATH:/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin STAGING_DIR=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 make CC=arm-brcm-linux-uclibcgnueabi-cc LD=arm-brcm-linux-uclibcgnueabi-ld
 
 # display ccache summary
 RUN ccache -s
