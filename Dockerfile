@@ -32,9 +32,15 @@ ENV PATH $PATH:/root/asuswrt-merlin/tools/brcm/hndtools-mipsel-uclibc/bin/:/root
 #RUN ln -s /usr/bin/ccache /usr/local/bin/mipsel-linux-uclibc-cc
 #RUN ln -s /usr/bin/ccache /usr/local/bin/mipsel-linux-uclibc-c++
 
-# add tcp HTCP module
+# add new tcp algorithm modules
 RUN echo "CONFIG_TCP_CONG_ADVANCED=y" >> /root/asuswrt-merlin/release/src-rt-6.x.4708/linux/linux-2.6/config_base.6a
 RUN echo "CONFIG_TCP_CONG_VEGAS=m" >> /root/asuswrt-merlin/release/src-rt-6.x.4708/linux/linux-2.6/config_base.6a
+RUN echo "CONFIG_TCP_CONG_HTCP=m" >> /root/asuswrt-merlin/release/src-rt-6.x.4708/linux/linux-2.6/config_base.6a
+RUN echo "CONFIG_TCP_CONG_HSTCP=m" >> /root/asuswrt-merlin/release/src-rt-6.x.4708/linux/linux-2.6/config_base.6a
+RUN echo "CONFIG_TCP_CONG_HYBLA=m" >> /root/asuswrt-merlin/release/src-rt-6.x.4708/linux/linux-2.6/config_base.6a
+RUN echo "CONFIG_TCP_CONG_SCALABLE=m" >> /root/asuswrt-merlin/release/src-rt-6.x.4708/linux/linux-2.6/config_base.6a
+RUN echo "CONFIG_TCP_CONG_YEAH=m" >> /root/asuswrt-merlin/release/src-rt-6.x.4708/linux/linux-2.6/config_base.6a
+RUN echo "CONFIG_TCP_CONG_ILLINOIS=m" >> /root/asuswrt-merlin/release/src-rt-6.x.4708/linux/linux-2.6/config_base.6a
 
 # build firmwares
 RUN cd /root/asuswrt-merlin/release/src-rt-6.x.4708/ && make rt-ac87u
