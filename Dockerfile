@@ -54,7 +54,7 @@ RUN cd /root/iperf && CFLAGS=-static LD_LIBRARY_PATH=//root/asuswrt-merlin/relea
 
 # udpxy
 RUN cd /root && git clone https://github.com/pcherenkov/udpxy.git
-RUN cd /root/udpxy && LD_LIBRARY_PATH=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib PATH=$PATH:/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin STAGING_DIR=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 make CC=arm-brcm-linux-uclibcgnueabi-cc LD=arm-brcm-linux-uclibcgnueabi-ld
+RUN cd /root/udpxy/chipmunk && LD_LIBRARY_PATH=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib PATH=$PATH:/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin STAGING_DIR=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 make CC=arm-brcm-linux-uclibcgnueabi-cc LD=arm-brcm-linux-uclibcgnueabi-ld
 
 # display ccache summary
 RUN ccache -s
