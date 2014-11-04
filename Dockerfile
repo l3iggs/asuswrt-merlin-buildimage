@@ -59,7 +59,7 @@ RUN cd /root/udpxy/chipmunk && LD_LIBRARY_PATH=/root/asuswrt-merlin/release/src-
 # hdhomerun
 ADD http://download.silicondust.com/hdhomerun/libhdhomerun_20141024beta2.tgz /root/hdhr/libhdhr.tgz
 RUN cd /root/hdhr && tar -xvf libhdhr.tgz
-RUN cd /root/hdhr/libhdhome* && LD_LIBRARY_PATH=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib PATH=$PATH:/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin STAGING_DIR=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 make CC=arm-brcm-linux-uclibcgnueabi-cc LD=arm-brcm-linux-uclibcgnueabi-ld
+RUN cd /root/hdhr/libhdhome* && LD_LIBRARY_PATH=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/lib PATH=$PATH:/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin STAGING_DIR=/root/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 make CC=arm-brcm-linux-uclibcgnueabi-cc LD=arm-brcm-linux-uclibcgnueabi-ld STRIP=LD=arm-brcm-linux-uclibcgnueabi-strip
 
 # display ccache summary
 RUN ccache -s
